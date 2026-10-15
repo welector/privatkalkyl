@@ -1,46 +1,43 @@
 # privatkalkyl
 
-Beta av **privatkalkyl.se** — svenska kalkylatorer för privatekonomi, en HOBL-based service. Första verktyget är en bröllopsbudget.
+Beta av **privatkalkyl.se**: svenska kalkyler och budgetar för privatekonomi. Bröllopsbudgeten är klar att använda. Bolånekalkyl, bilkalkyl, hushållsbudget, evenemangsbudget och starta eget-kalkyl finns som utkast, tillsammans med guider till varje kalkyl.
 
-Sajten är en enda fristående HTML-fil. Den behöver ingen server, ingen databas och inget byggsteg — allt körs i besökarens webbläsare.
+Sajten är en enda fristående HTML-fil. Den behöver ingen server, ingen databas och inget byggsteg. Allt körs i besökarens webbläsare. Typsnitten (Fraunces och Figtree) hämtas från Google Fonts, med systemtypsnitt som reserv.
 
 ## Filer
 
 | Fil | Beskrivning |
 | --- | --- |
-| `index.html` | Hela sajten, självständig och färdig att publicera |
+| `index.html` | Hela sajten, färdig att publicera |
+| `CNAME` | Kopplar GitHub Pages till domänen privatkalkyl.se |
 | `README.md` | Den här filen |
-| `.gitignore` | Ignorerar skräpfiler från operativsystem och editorer |
 
-## Publicera med GitHub Pages
+## Publicering
 
-1. Ladda upp filerna i det här repot (`Add file → Upload files` på repots startsida).
-2. Gå till **Settings → Pages**.
-3. Under *Build and deployment*, välj **Deploy from a branch**.
-4. Välj branch `main` och mapp `/ (root)`. Spara.
-5. Efter någon minut ligger sajten på `https://welector.github.io/privatkalkyl/`.
+Sajten publiceras med GitHub Pages från branch `main`, mapp `/ (root)`. En ändring i `main` syns på privatkalkyl.se efter ett par minuter.
 
-## Koppla domänen privatkalkyl.se
+Domänen ligger hos Loopia. DNS:
 
-1. Lägg till domänen under **Settings → Pages → Custom domain**. GitHub skapar då en `CNAME`-fil i repot åt dig.
-2. Hos din domänleverantör pekar du domänen till GitHub Pages:
-   - `A`-poster för `privatkalkyl.se` till `185.199.108.153`, `185.199.109.153`, `185.199.110.153` och `185.199.111.153`
-   - `CNAME`-post för `www` till `welector.github.io`
-3. Kryssa i **Enforce HTTPS** när certifikatet är utfärdat (kan ta upp till en timme).
+- Fyra `A`-poster för `@`: `185.199.108.153`, `185.199.109.153`, `185.199.110.153` och `185.199.111.153`
+- `CNAME` för `www`: `welector.github.io.`
+- En `TXT`-post för `@` med verifieringen till Google Search Console. Låt den ligga kvar.
+
+Repot måste vara publikt för att GitHub Pages ska fungera med ett gratiskonto.
 
 ## Integritet
 
-Sajten har en integritetssektion längst ned (`#integritet`) som beskriver att inga uppgifter samlas in, att budgeten lagras i besökarens egen webbläsare och att inga cookies eller spårningsverktyg används.
+Sajten har en integritetssektion (`#integritet`) som beskriver att inga uppgifter samlas in, att det besökaren fyller i lagras i den egna webbläsaren och att inga cookies eller spårningsverktyg används.
 
-**Innan lansering:** kontrollera att e-postadressen `hej@privatkalkyl.se` finns och tas emot — den står som kontaktväg i både integritetssektionen och sidfoten.
+**Innan lansering:** kontrollera att e-postadressen `hej@privatkalkyl.se` finns och tas emot. Den står i integritetssektionen och sidfoten.
 
-Om ni senare inför konton, molnlagring, statistikverktyg eller annonser måste den sektionen uppdateras och en samtyckesbanner läggas till.
+Om sajten senare får konton, molnlagring, statistikverktyg eller annonser måste integritetssektionen uppdateras och en samtyckesbanner läggas till.
 
 ## Att veta om betan
 
-- Användarens budget sparas i webbläsarens `localStorage`. Inget skickas till någon server, och det finns inget konto — data försvinner om besökaren rensar webbläsardata eller byter enhet.
-- Besökaren kan exportera sin budget till en CSV-fil som öppnas i Excel, och läsa in samma fil igen.
+- Varje kalkyl sparar sina siffror i webbläsarens `localStorage`, med en egen nyckel per kalkyl. Inget skickas till någon server och det finns inga konton.
+- Besökaren kan exportera en kalkyl till en CSV-fil som öppnas i Excel, och läsa in samma fil igen.
+- Startvärdena i kalkylerna är exempel, inte uppmätta snittpriser. Guiderna saknar ännu prisuppgifter med källa.
 
 ## Nästa steg
 
-Sidan renderas med JavaScript och har i dag en enda URL. Inför skarp drift bör innehållet flyttas till en riktig sidstruktur med egna adresser per kalkylator och artikel (`/brollopsbudget`, `/guider/...`), server-renderad HTML, sitemap och metadata per sida — det är vad som krävs för att guiderna ska ge effekt i sök.
+Sajten har i dag en enda URL. För att guiderna ska ge effekt i sök behöver innehållet delas upp i egna sidor per kalkyl och guide (`/brollopsbudget`, `/guider/...`), med metadata per sida och en `sitemap.xml`.
